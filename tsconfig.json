@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext", "es2018", "es2020"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "useUnknownInCatchVariables": false,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "jsxImportSource": "@emotion/react",
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"],
+      "@styles/*": ["src/styles/*"],
+      "@redux/*": ["src/redux/*"]
+    },
+    "incremental": true
+  },
+  "lib": ["es2015"]
+}
