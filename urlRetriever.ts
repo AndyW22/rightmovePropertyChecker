@@ -1,9 +1,10 @@
 import axios from 'axios';
+import 'dotenv/config';
 import notifier from 'node-notifier';
 
-const URL =
-  'https://www.rightmove.co.uk/property-to-rent/find.html?searchType=RENT&locationIdentifier=REGION%5E93829&insId=1&radius=0.0&minPrice=&maxPrice=&minBedrooms=&maxBedrooms=1&displayPropertyType=&maxDaysSinceAdded=&sortByPriceDescending=&_includeLetAgreed=on&primaryDisplayPropertyType=&secondaryDisplayPropertyType=&oldDisplayPropertyType=&oldPrimaryDisplayPropertyType=&letType=&letFurnishType=&houseFlatShare=';
+const URL = process.env.URL as string;
 const DELAY = 131374;
+
 const main = async () => {
   let currentNumberOfProperties = 0;
   const result = await getData();
@@ -34,10 +35,10 @@ const getData = async () => {
   if (!text) {
     throw new Error(JSON.stringify(data));
   }
-  const item = text.split(
+  const numberText = text.split(
     `<span class="searchHeader-resultCount" data-bind="counter: resultCount, formatter: numberFormatter">`
   )[1];
-  const numberOfProperties = Number(item.substring(0, 2));
+  const numberOfProperties = Number(numberText.substring(0, 2));
   console.log(`Number of properties: ${numberOfProperties}`);
   const today = new Date();
   const time =
