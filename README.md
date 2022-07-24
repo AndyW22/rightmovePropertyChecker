@@ -1,0 +1,22 @@
+# Rightmove property checker
+
+Rightmove property alerts are often delayed by hours or days, so this repository is a simple script which will periodically visit a given URL on Rightmove and send a notification if there are new properties available, so you can be one of the first to view it.
+
+## Usage
+
+`npm install` or `yarn install`
+
+Create a `.env` file and add the URL for your property search on Rightmove. To obtain the URL, simply make a search for any location with the correct paramters, and copy the URL.
+
+For example, 1 bedrom apartments in York up to £1000/pcm:
+
+```
+URL="https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E1498&maxBedrooms=1&maxPrice=1000&propertyTypes=&includeLetAgreed=false&mustHave=&dontShow=&furnishTypes=&keywords="
+```
+
+Start the script with `npm start` or `yarn start`.
+To verify it is working correctly, you should get a notification on the first iteration for the current number of properties available.
+
+## Notes
+
+Rightmove can sometimes have a delay between the number of properties shown at the top, and the actual number of properties shown in the search results. It can take up to 10 minutes for the new property/properties to show.
