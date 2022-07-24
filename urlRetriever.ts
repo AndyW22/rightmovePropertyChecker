@@ -7,17 +7,10 @@ const DELAY = 131374;
 
 const main = async () => {
   let currentNumberOfProperties = 0;
-  const result = await getData();
-  if (result !== currentNumberOfProperties) {
-    notifier.notify(
-      `There are ${result - currentNumberOfProperties} new properties avaiable`
-    );
-    currentNumberOfProperties = result;
-  }
 
-  setInterval(async () => {
+  const retrieveData = async () => {
     const result = await getData();
-    if (result !== currentNumberOfProperties) {
+    if (result > currentNumberOfProperties) {
       notifier.notify(
         `There are ${
           result - currentNumberOfProperties
@@ -25,6 +18,10 @@ const main = async () => {
       );
       currentNumberOfProperties = result;
     }
+  };
+  await retrieveData();
+  setInterval(async () => {
+    await retrieveData();
   }, DELAY);
 };
 
