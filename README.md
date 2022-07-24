@@ -6,7 +6,7 @@ Rightmove property alerts are often delayed by hours or days, this repository is
 
 `npm install` or `yarn install`
 
-Create a `.env` file and add the URL for your property search on Rightmove. To obtain the URL, simply make a search for any location with the correct paramters, and copy the URL.
+Create a `.env` file and add the URL for your property search on Rightmove. To obtain the URL, simply make a search for any location with any filter, max/min price or number of beds and copy the URL.
 
 For example, 1 bedrom apartments in York up to £1000/pcm:
 
