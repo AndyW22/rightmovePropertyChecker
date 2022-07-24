@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node urlRetriever.ts"
+    "start": "ts-node rightmovePropertyChecker.ts"
   },
   "keywords": [],
   "author": "",

@@ -1,6 +1,6 @@
 # Rightmove property checker
 
-Rightmove property alerts are often delayed by hours or days, so this repository is a simple script which will periodically visit a given URL on Rightmove and send a notification if there are new properties available, so you can be one of the first to view it.
+Rightmove property alerts are often delayed by hours or days, this repository is a simple NodeJS script which will periodically visit a given URL on Rightmove and send an OS notification if there are new properties available, so you can be one of the first to view it.
 
 ## Usage
 
