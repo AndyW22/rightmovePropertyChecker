@@ -3,7 +3,7 @@ import 'dotenv/config';
 import notifier from 'node-notifier';
 
 const URL = process.env.URL as string;
-const DELAY = 131374;
+const DELAY = 120000;
 
 const main = async () => {
   let currentNumberOfProperties = 0;
@@ -37,11 +37,8 @@ const getData = async () => {
   )[1];
   const numberOfProperties = Number(numberText.substring(0, 2));
   console.log(`Number of properties: ${numberOfProperties}`);
-  const today = new Date();
-  const time =
-    today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
   console.log(
-    `Data retrival completed at: ${time}. Waiting ${millisToMinutesAndSeconds(
+    `Data retrival completed at: ${new Date().toLocaleTimeString()}. Waiting ${millisToMinutesAndSeconds(
       DELAY
     )} minutes till next data fetch.`
   );
