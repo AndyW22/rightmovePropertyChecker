@@ -35,7 +35,7 @@ const getData = async () => {
   const numberText = text.split(
     `<span class="searchHeader-resultCount" data-bind="counter: resultCount, formatter: numberFormatter">`
   )[1];
-  const numberOfProperties = Number(numberText.substring(0, 2));
+  const numberOfProperties = Number(numberText.split('</span>')[0]);
   console.log(`Number of properties: ${numberOfProperties}`);
   console.log(
     `Data retrival completed at: ${new Date().toLocaleTimeString()}. Waiting ${millisToMinutesAndSeconds(
