@@ -38,8 +38,8 @@ const main = async () => {
           sound: true,
         });
       }
-      currentNumberOfProperties = result;
     }
+    currentNumberOfProperties = result;
   };
   await retrieveData();
   setInterval(async () => {
