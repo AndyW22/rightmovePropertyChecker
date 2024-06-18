@@ -17,6 +17,16 @@ URL="https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=R
 Start the script with `npm start` or `yarn start`.
 To verify it is working correctly, you should get a notification on the first iteration for the current number of properties available.
 
+## Gotify
+
+This app supports notifying via Gotify. To enable, add the following values to `.env`:
+
+```
+GOTIFY_URL="..."
+GOTIFY_TOKEN="..."
+
+```
+
 ## Notes
 
 Rightmove can sometimes have a delay between the number of properties shown at the top, and the actual number of properties shown in the search results. It can take up to 10 minutes for the new property/properties to show.
