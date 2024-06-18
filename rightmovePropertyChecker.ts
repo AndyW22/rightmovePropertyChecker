@@ -6,7 +6,7 @@ import notifier from 'node-notifier';
 const useGotify = Boolean(process.env.GOTIFY_URL);
 
 const URL = process.env.URL as string;
-const DELAY = process.env.DELAY_MS ?? 120000;
+const DELAY = Number(process.env.DELAY_MS) ?? 120000;
 
 const messageTitle = 'New Properties Available';
 
