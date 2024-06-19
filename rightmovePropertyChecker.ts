@@ -8,33 +8,28 @@ const useGotify = Boolean(process.env.GOTIFY_URL);
 const URL = process.env.URL as string;
 const DELAY = Number(process.env.DELAY_MS) ?? 120000;
 
-const messageTitle = 'New Properties Available';
-
 const main = async () => {
   let currentNumberOfProperties = 0;
 
   const retrieveData = async () => {
     const result = await getData();
     if (result > currentNumberOfProperties) {
-      const message = `There are ${
+      const title = `There are ${
         result - currentNumberOfProperties
-      } new properties available!
-      
-      
-      Visit ${URL}.`;
+      } new properties available!`;
 
       if (useGotify) {
         await gotify({
           server: process.env.GOTIFY_URL!,
           app: process.env.GOTIFY_TOKEN!,
-          title: messageTitle,
-          message,
+          title,
+          message: URL,
           priority: 10,
         });
       } else {
         notifier.notify({
-          title: messageTitle,
-          message,
+          title,
+          message: URL,
           sound: true,
         });
       }
