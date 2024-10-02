@@ -4,7 +4,7 @@ Rightmove property alerts are often delayed by hours or days, this repository is
 
 ## Usage
 
-`npm install` or `yarn`
+`pnpm install` or your preferred package manager
 
 Create a `.env` file and add the URL for your property search on Rightmove. To obtain the URL, simply make a search for any location with any filter, max/min price or number of beds and copy the URL.
 

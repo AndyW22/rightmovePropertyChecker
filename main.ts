@@ -6,16 +6,18 @@ import notifier from 'node-notifier';
 const useGotify = Boolean(process.env.GOTIFY_URL);
 
 const URL = process.env.URL as string;
-const DELAY = Number(process.env.DELAY_MS) ?? 120000;
+const DELAY = isNaN(Number(process.env.DELAY_MS))
+  ? 600000
+  : Number(process.env.DELAY_MS);
 
 const main = async () => {
   let currentNumberOfProperties = 0;
 
-  const retrieveData = async () => {
-    const result = await getData();
-    if (result > currentNumberOfProperties) {
+  const checkAndNotify = async () => {
+    const newNumberOfProperties = await getNumberOfProperties();
+    if (newNumberOfProperties > currentNumberOfProperties) {
       const title = `There are ${
-        result - currentNumberOfProperties
+        newNumberOfProperties - currentNumberOfProperties
       } new properties available!`;
 
       if (useGotify) {
@@ -34,30 +36,29 @@ const main = async () => {
         });
       }
     }
-    currentNumberOfProperties = result;
+    currentNumberOfProperties = newNumberOfProperties;
   };
-  await retrieveData();
+  await checkAndNotify();
   setInterval(async () => {
-    await retrieveData();
+    await checkAndNotify();
   }, DELAY);
 };
 
-const getData = async () => {
-  console.log(`Fetching data...`);
-  const data = await axios.get(URL);
-  const text = data.data as string;
-  if (!text) {
-    throw new Error(JSON.stringify(data));
+const getNumberOfProperties = async () => {
+  const result = await axios.get(URL);
+  const htmlText = result.data as string;
+  if (!htmlText) {
+    throw new Error(JSON.stringify(result));
   }
-  const numberText = text.split(
+  const numberSpan = htmlText.split(
     `<span class="searchHeader-resultCount" data-bind="counter: resultCount, formatter: numberFormatter">`
   )[1];
-  const numberOfProperties = Number(numberText.split('</span>')[0]);
+  const numberOfProperties = Number(numberSpan.split('</span>')[0]);
   console.log(`Number of properties: ${numberOfProperties}`);
   console.log(
     `Data retrival completed at: ${new Date().toLocaleTimeString()}. Waiting ${millisToMinutesAndSeconds(
       DELAY
-    )} minutes till next data fetch.`
+    )} seconds till next data fetch.`
   );
   return numberOfProperties;
 };

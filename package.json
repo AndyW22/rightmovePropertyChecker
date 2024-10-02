@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsx rightmovePropertyChecker.ts"
+    "start": "tsx main.ts"
   },
   "keywords": [],
   "author": "",
